@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Company extends Model
 {
-    use  HasFactory;
+    use HasFactory;
 
-    protected $table = 'users';
+    protected $table = 'companies';
     public $timestamps = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
     ];
