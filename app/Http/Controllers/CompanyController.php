@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 use App\Models\Company;
+use App\Models\UserCompanyLink;
 
 class CompanyController extends Controller
 {
@@ -91,8 +92,10 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $company = Company::findOrFail($id);
+        $userCompanyLink = new UserCompanyLink();
 
         $company->delete();
+        $userCompanyLink->removeAllUserConnections($company);
     
         return redirect()->route('company.index')
                 ->with('success','company deleted successfully');
