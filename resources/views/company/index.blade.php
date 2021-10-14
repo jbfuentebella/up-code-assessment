@@ -3,7 +3,7 @@
 @section('content')
   <a href="{{ route('homepage') }}" class="btn btn-primary">Go to Homepage</a>
   <h2>Company List</h2>
-  <a href="{{ route('company.create') }}" class="btn btn-primary">Create Company</a>
+  <a href="{{ route('company.create') }}" class="btn btn-success">Create Company</a>
   <div class="container mt-5">
     <table class="table table-bordered yajra-datatable">
       <thead>

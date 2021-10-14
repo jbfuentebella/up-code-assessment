@@ -107,7 +107,7 @@ class UserController extends Controller
                 ->addColumn('action', function($row){
                     $actionBtn = '
                         <form action="'.route('user.destroy', $row->id).'" method="POST">
-                            <a class="btn btn-primary" href="'. route('user.edit', $row->id) .'">Edit</a>
+                            <a class="btn btn-warning" href="'. route('user.edit', $row->id) .'">Edit</a>
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="'. csrf_token() .'">
                             <button type="submit" class="btn btn-danger">Delete</button>

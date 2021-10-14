@@ -3,61 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserCompanyLink;
+use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class UserCompanyLinkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\UserCompanyLink  $userCompanyLink
      * @return \Illuminate\Http\Response
      */
-    public function show(UserCompanyLink $userCompanyLink)
+    public function show($id)
     {
-        //
-    }
+        $company = Company::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UserCompanyLink  $userCompanyLink
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserCompanyLink $userCompanyLink)
-    {
-        //
+        return view('company.add-user')->with([
+            'users' => User::all(),
+            'company' => $company
+        ]);
     }
 
     /**
@@ -67,19 +32,21 @@ class UserCompanyLinkController extends Controller
      * @param  \App\Models\UserCompanyLink  $userCompanyLink
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserCompanyLink $userCompanyLink)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $company = Company::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\UserCompanyLink  $userCompanyLink
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UserCompanyLink $userCompanyLink)
-    {
-        //
+        $input = $request->all();
+        $userCompanyLink = new UserCompanyLink();
+
+        if (isset($input['users'])) {
+            $userCompanyLink->updateUserCompanyLinking($company, $input['users']);
+        } else {
+            $userCompanyLink->removeAllUserConnections($company);
+        }
+
+
+        return redirect()->route('company.index')
+            ->with('success', 'Company\'s user(s) linked successfully');
     }
 }

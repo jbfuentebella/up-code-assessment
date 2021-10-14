@@ -6,6 +6,6 @@
   <form method="POST" style="width: 25rem;">
     @csrf
     @include('user.fields')
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-success" type="success">Submit</button>
   </form>
 @endsection

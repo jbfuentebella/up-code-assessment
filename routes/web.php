@@ -30,3 +30,6 @@ Route::post('/company/create', 'App\Http\Controllers\CompanyController@store')->
 Route::get('/company/{id}/edit', 'App\Http\Controllers\CompanyController@edit')->name('company.edit');
 Route::post('/company/{id}/edit', 'App\Http\Controllers\CompanyController@update')->name('company.update');
 Route::delete('/company/{id}', 'App\Http\Controllers\CompanyController@destroy')->name('company.destroy');
+
+Route::get('/company/{id}/add-user', 'App\Http\Controllers\UserCompanyLinkController@show')->name('usercompanylink.show');
+Route::post('/company/{id}/add-user', 'App\Http\Controllers\UserCompanyLinkController@update')->name('usercompanylink.update');

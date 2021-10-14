@@ -107,7 +107,8 @@ class CompanyController extends Controller
                 ->addColumn('action', function($row){
                     $actionBtn = '
                         <form action="'.route('company.destroy', $row->id).'" method="POST">
-                            <a class="btn btn-primary" href="'. route('company.edit', $row->id) .'">Edit</a>
+                            <a class="btn btn-primary" href="'. route('usercompanylink.show', $row->id) .'">Add User</a>
+                            <a class="btn btn-warning" href="'. route('company.edit', $row->id) .'">Edit</a>
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="'. csrf_token() .'">
                             <button type="submit" class="btn btn-danger">Delete</button>

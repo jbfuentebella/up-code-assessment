@@ -15,4 +15,15 @@ class Company extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function users()
+    {
+        return $this->hasManyThrough('App\Models\User', 'App\Models\UserCompanyLink', 'company_id', 'id', 'id', 'user_id');
+    }
+
+    public function checkLinkByUserId($id)
+    {
+        return !empty($this->users()->where('user_id', $id)->first());
+    }
+    
 }

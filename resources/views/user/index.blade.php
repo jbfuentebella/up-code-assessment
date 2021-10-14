@@ -3,7 +3,7 @@
 @section('content')
   <a href="{{ route('homepage') }}" class="btn btn-primary">Go to Homepage</a>
   <h2>User List</h2>
-  <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
+  <a href="{{ route('user.create') }}" class="btn btn-success">Create User</a>
   <div class="container mt-5">
     <table class="table table-bordered yajra-datatable">
       <thead>
